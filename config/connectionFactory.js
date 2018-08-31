@@ -1,21 +1,28 @@
-/* importa a coneção com mongodb */
+var mongo = require("mongodb").MongoClient;			
+var assert = require("assert");			
 
-let mongo = require('mongodb');
+const url = "mongodb://localhost:27017";			
+const dbName = "got";			
 
- let connection = ()=>{
-  console.log('banco de dados conectado');
-  
-  let db = new mongo.Db(
-    'got',
-    new mongo.Server(
-      'localhost',
-      27017,
-      {}
-    ),
-    {}
-  );
-  return db
-}
-module.exports = ()=>{
-  return connection;
-}
+let connMongoDB = function(dados) {			
+		mongo.connect(url, function(err, client) {			
+		assert.equal(null, err);			
+		console.log("Connected successfully to server");			
+		const db = client.db(dbName);			
+		query(db, dados);			
+		client.close();			
+	});			
+};			
+function query(db, dados) {			
+	var collection = db.collection(dados.collection);			
+	switch (dados.operacao) {			
+		case "inserir":			
+		collection.insertOne(dados.usuario, dados.callback);			
+		break;			
+	default:			
+		break;			
+	}			
+}			
+module.exports = function() {			
+return connMongoDB;			
+};			

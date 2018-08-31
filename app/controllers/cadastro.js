@@ -17,5 +17,11 @@ module.exports.cadastrar = (application, req, res)=>{
     res.render('cadastro',{validacao:err,dadosForm:dadosForm});
     return;
   }
+  let connection = application.config.connectionFactory;
+  console.log(connection);
+  
+  let usuarios = new application.app.models.usuarios(connection)
+  usuarios.inserirUsuario(dadosForm);
   res.send("podemos cadastrar");
+
 }
