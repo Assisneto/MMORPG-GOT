@@ -1,5 +1,5 @@
 module.exports = (application)=>{
 	application.get('/cadastro',(req, res)=>{
-		res.render('cadastro')
+		application.app.controllers.cadastro.cadastro(application,req,res);
 	});
 }
