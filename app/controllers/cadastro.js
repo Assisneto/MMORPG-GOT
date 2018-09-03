@@ -12,7 +12,8 @@ module.exports.cadastrar = (application, req, res)=>{
   req.assert('casa','Casa não pode ser vazio');
 
   let err = req.validationErrors();
-
+  
+  
   if(err){
     res.render('cadastro',{validacao:err,dadosForm:dadosForm});
     return;
