@@ -9,7 +9,7 @@ module.exports.autenticar = (application,req,res)=>{
 	req.assert('senha','Senha não pode ser vazia').notEmpty();
 
 	let err = req.validationErrors();
-
+	console.log(JSON.stringify(err));
 	if(err){
 		res.render('index',{validacao:err})
 		return;

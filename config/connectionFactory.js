@@ -28,8 +28,8 @@ function query(db, dados,req,res) {
 					req.session.usuario = results[0].usuario
 					req.session.casa = results[0].casa;
 				}
-				
-				req.session.autorizado == true ? res.redirect("jogo") : res.render('index',{validacao:{}});
+				let erros = [{msg:"Usuario ou senha foi digitado errado"}]
+				req.session.autorizado == true ? res.redirect("jogo") : res.render('index',{validacao:erros});
 
 			});
 		break;			
