@@ -32,7 +32,17 @@ function query(db, dados,req,res) {
 				req.session.autorizado == true ? res.redirect("jogo") : res.render('index',{validacao:erros});
 
 			});
-		break;			
+			case "gerarParametros" :
+				collection.insertOne({
+					usuario: dados.usuario.usuario, 
+					moeda:15, 
+					suditos:10, 
+					temor: Math.floor(Math.random()*1000),
+					sabedoria: Math.floor(Math.random()*1000), 
+					comecio:Math.floor(Math.random()*1000), 
+					magia:Math.floor(Math.random()*1000)
+				},dados.callback); 	
+		break;						
 	default:			
 		break;			
 	}			
