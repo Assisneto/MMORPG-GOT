@@ -44,11 +44,12 @@ function query(db, dados,req,res) {
 					magia:Math.floor(Math.random()*1000)
 				},dados.callback); 	
 			break;
-			case "iniciojogo":
+			case "inicioJogo":
 				collection.find(dados.usuario.usuario).toArray((err,results)=>{	
 					
+					res.render('jogo',{img_casa:dados.usuario.casa})
 					
-
+					
 				});
 			break;					
 	default:			

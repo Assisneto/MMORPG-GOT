@@ -3,7 +3,12 @@ module.exports.jogo = (application,req,res)=>{
 	if(req.session.autorizado !== true)
 		res.render('index',{validacao:{}});
 	else {
-		res.render('jogo',{img_casa:req.session.casa})
+		let usuario = {usuario:req.session.usuario, casa:req.session.casa}
+		let connection = application.config.connectionFactory;
+		let jogo = new application.app.models.jogo(connection);
+
+		jogo.iniciaJogo(usuario,req,res);
+		
 	}
 	
 

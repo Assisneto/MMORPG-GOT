@@ -2,7 +2,7 @@ class Jogo {
   constructor(connection){
     this._connection = connection;
   }
-  gerarParametros(usuario,req){
+  gerarParametros(usuario){
     let dados = {
       operacao: "gerarParametros",
       usuario: usuario,
@@ -10,9 +10,9 @@ class Jogo {
       callback: function(err, result) {
         }
       };
-    this._connection(dados,req);
+    this._connection(dados);
     };
-  iniciaJogo(usuario,req){ 
+  iniciaJogo(usuario,req,res){ 
     let dados = {
     operacao: "inicioJogo",
     usuario:usuario,
@@ -20,7 +20,7 @@ class Jogo {
     callback: function(err, result) {
       }
     };
-  this._connection(dados,req);
+  this._connection(dados,req,res);
   };
 }  
 
