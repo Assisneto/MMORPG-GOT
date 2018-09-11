@@ -32,6 +32,7 @@ function query(db, dados,req,res) {
 				req.session.autorizado == true ? res.redirect("jogo") : res.render('index',{validacao:erros});
 
 			});
+			break;
 			case "gerarParametros" :
 				collection.insertOne({
 					usuario: dados.usuario.usuario, 
@@ -42,7 +43,14 @@ function query(db, dados,req,res) {
 					comecio:Math.floor(Math.random()*1000), 
 					magia:Math.floor(Math.random()*1000)
 				},dados.callback); 	
-		break;						
+			break;
+			case "iniciojogo":
+				collection.find(dados.usuario.usuario).toArray((err,results)=>{	
+					
+					
+
+				});
+			break;					
 	default:			
 		break;			
 	}			
