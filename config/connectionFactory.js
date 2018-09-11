@@ -14,6 +14,7 @@ let connMongoDB = function(dados, req = 0,res = 0) {
 	});			
 };			
 function query(db, dados,req,res) {			
+
 	let collection = db.collection(dados.collection);			
 	switch (dados.operacao) {			
 		case "inserir":			
@@ -21,7 +22,6 @@ function query(db, dados,req,res) {
 		break;
 		case "autenticar":
 			collection.find(dados.usuario).toArray((err,results)=>{	
-				
 				if (results[0]!= undefined) {
 					req.session.autorizado = true;
 
@@ -45,9 +45,10 @@ function query(db, dados,req,res) {
 				},dados.callback); 	
 			break;
 			case "inicioJogo":
-				collection.find(dados.usuario.usuario).toArray((err,results)=>{	
-					
-					res.render('jogo',{img_casa:dados.usuario.casa})
+		
+				collection.find({usuario: dados.usuario.usuario}).toArray((err,results)=>{	
+			
+				res.render('jogo',{img_casa:dados.usuario.casa, jogo:results[0]})
 					
 					
 				});
